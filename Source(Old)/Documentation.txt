@@ -1,0 +1,167 @@
+Official Documentation for NSConnect Beta
+
+********
+::DISCLAIMER::
+This is still in beta and will be for a while!!!
+
+many new functions will be added and be upgraded
+in the future!
+
+This is just a test-release
+********
+
+::Requirements::
+Exploit that supports readfile(path) and writefile(path, text)
+
+python 3.7+ installed on ALL players' computers
+(unless you compile the py scripts into exes. just make sure their put in the right place)
+
+//////////////////////////////////////////////////////////////////
+::Part 1 - What is this?::
+//////////////////////////////////////////////////////////////////
+
+	This is a system used with any exploit that supports Read/Write.
+The purpose of this is to be able to semi-bypass fe. You and your
+friends will be able to exploit together. This setup brings in the
+possibility for two computers to connect and replicate changes in
+game. However, at this current level, it will only work on lan.
+
+	This means that if you and your friends are on the same wifi,
+then you will be able to use this. All required files are included
+here. There will be more scripts released in later distributions.
+For now please support this project if you know how to do this stuff.
+By all means edit your copy. Use it to create new scripts and
+functions. All source files are included in this zip.
+
+//////////////////////////////////////////////////////////////////
+::Part 2 - Instructions::
+//////////////////////////////////////////////////////////////////
+
+When you extract this zip you should get a folder labeled "NSC"
+this is the folder that you need to put in the "Workspace" folder
+of your exploit (or wherever the writefile function writes to).
+
+1. Move the "NSC" folder into the workspace.
+
+2. one person should run the NSConnectServer.py, this will host
+the connnecion for all other players.
+
+3. *ALL* players need to run the NSConnect.py and type the ip
+that is shown on the host console
+
+4. If it said connected, then it is all good and you can minimize
+all of the consoles.
+
+5. Load into a roblox game together. Once you are all in, execute
+the Setup.lua file in your exploit. In the dev console on roblox,
+you should see "Loadin up the bois"
+
+You are done with setup
+
+//////////////////////////////////////////////////////////////////
+::Part 3 - Test::
+//////////////////////////////////////////////////////////////////
+
+There are a few pre-installed commands
+use the commands in the chat with the
+command prefix. default prefix "/"
+ - send : "/send [text]" ex: "/send hi"
+ - quit : "/quit"
+ - execute : "/execute [httpget/getobjects] [http link/rbxassetid] [player name/all/me]"
+ ex: "/execute httpget https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source me"
+ ex2: "/execute getobjects 123456789 all"
+
+:send will print text to other players' dev consoles
+:quit will end NSConnect and quit roblox
+:execute will run the given loadstring on given players' game
+
+//////////////////////////////////////////////////////////////////
+::Part 4 - scripting::
+//////////////////////////////////////////////////////////////////
+
+list of functions:
+ - create, kill, set, execute
+
+You can inject other scripts to the game using these functions.
+look at this example.
+
+game:GetService("ReplicatedStorage").NSSend:Fire("Messege")
+
+It shows how to send data to other
+players using the event. There will be an implementation of a
+few basic functions that scriptors can utilize. The main one
+being createing parts. 
+
+The structure for creating a part for
+everyone else would be
+"create:[name].[property]:[value]"
+the properties can be extended like so
+"create:[name]/[property]:[value]/[property]:[value]/[property]:[value]"
+being iterated by '/'
+
+Example:
+	"create:block/pos:0,0,0/size:10,10,10/colorrgb:0,100,100"
+
+the only required property is position other properties will be
+defaulted.
+
+to kill someone, for you and your friends. if its one of your
+friends, or you, it will work. however, other players, just you
+and your friends won't see them.
+usage:
+	"kill [player name]"
+do not get this confused with player object. killing the local
+player would be "game.Players.LocalPlayer.Name" not just
+"game.Players.LocalPlayer"
+
+Example:
+	- "kill demonfall101"
+
+the next function is set
+this function will set the linked value for NSConnect to the
+following text. This could be useful for scripts as they could
+utilize this
+
+Example:
+game:GetService('ReplicatedStorage').outcmd.Value.Changed:Connect(function()
+	local input = game:GetService('ReplicatedStorage').outcmd.Value
+	if string.sub(input, 1, 3) == "msg" then
+		local message = string.sub(input, 4, #input)
+		print("an idiot said: "..message)
+	end
+end)
+
+this could be used in scripts to make it listen for something like maybe you
+have a messeging gui. You could have it send data with a prefix "msg". then
+detect those and use them.
+
+execute is also something that you use on other players. It works just like
+the command, except that it is by command line.
+
+usage - "execute [httpget/getobjects] [http link/rbxassetid] [player name/all]"
+
+it will send the link to the connected player with that name. It will run that
+script for them. ** Just use code at end of pastebin link, or rbx id num **
+
+Example:
+	rbxasset - "execute getobjects 684354876 demonfall101"
+	httpget - "execute httpget https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source demonfall101"
+
+//////////////////////////////////////////////////////////////////
+::Part 5 - end::
+//////////////////////////////////////////////////////////////////
+
+Please by all means, edit this program. Take it and use it to
+create your own programs and scripts. Add functions. Make it
+better. If you change it and make it better. If you would
+like to upgrade this. please dm me about it. If i agree to
+the changes i will implement it. My personal group's discord
+will be the home of this setup. Thank You for testing :)
+
+Links:
+ - NightShade : https://discord.gg/6H9DfJA
+
+You can find me on there by the name of Demonfall101.
+Please dm me with ideas or feedback. Thank youuu.
+
+*** This was made by NightShade. If you paid for this, you were scammed ***
